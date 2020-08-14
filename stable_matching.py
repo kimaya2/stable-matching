@@ -1,5 +1,4 @@
 
-
 preferred_rankings_men = {
     'raj' : ['lisa','simran','anjali'],
     'rahul' : ['anjali','lisa','simran'],
@@ -28,11 +27,14 @@ def begin_matching(man):
 
         taken_match = [couple for couple in tentative_engagements if woman in couple]
 
+        #woman is not matched with anyone
         if len(taken_match) == 0:
             tentative_engagements.append([man,woman])
             free_men.remove(man)
             print(man+" no longer free and tentatively engaged to "+woman)
             break
+
+        #woman already matched with someone and comparision between current and potential partner
         elif len(taken_match) > 0:
             print(woman+" taken already")
             current_guy = preferred_rankings_women[woman].index(taken_match[0][0])
@@ -53,8 +55,6 @@ def stable_matching():
     while len(free_men) > 0:
         for man in free_men:
             begin_matching(man)
-
-
 
 if __name__ == "__main__":
     init_free_men()
